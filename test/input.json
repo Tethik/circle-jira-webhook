@@ -1,0 +1,12 @@
+{
+    "payload": {
+        "vcs_url" : "https://github.com/massagio/user",
+        "build_url" : "https://circleci.com/gh/Massagio/user/226",
+        "build_num" : 226,
+        "branch" : "master",
+        "vcs_revision" : "760372e751e8640e6554fee0d993a1d8b41e851d",
+        "status" : "bananas",
+        "subject" : "TES-58 TES-58 TES-12381",
+        "body": ""
+    }
+}

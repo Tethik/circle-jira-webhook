@@ -1,0 +1,21 @@
+{
+  "name": "circle-jira",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-vault": "^0.5.10",
+    "raven": "^2.2.1",
+    "serverless-sentry-lib": "^1.0.0"
+  },
+  "devDependencies": {
+    "node-vault": "^0.5.10",
+    "serverless-python-requirements": "^3.0.5",
+    "serverless-sentry": "^1.0.0"
+  }
+}

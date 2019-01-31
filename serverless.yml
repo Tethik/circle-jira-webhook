@@ -1,0 +1,70 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+package:
+  exclude:
+    - node_modules/**
+    - Pipfile*
+    - package-*.json
+    - vault/**
+    - .env
+    - requirements.txt
+    - test-requirements.txt
+    - yarn.lock
+    - env
+    - test/**
+    - config/**
+    - .serverless/**
+    - .**
+  # include:
+  #   - circlebot/**
+
+service: circle-jira
+
+provider:
+  name: aws
+  runtime: python3.6
+  region: eu-central-1
+  timeout: 60
+  memorySize: 256
+
+
+
+functions:
+  circle:
+    handler: circlebot/handler.circle_webhook
+    events:
+      - http:
+          path: /
+          method: post
+
+    environment:
+      CIRCLE_TOKEN: ${file(./config/envVars.js):env.CIRCLE_TOKEN}
+      JIRA_CIRCLECI_CUSTOM_FIELD: ${file(./config/envVars.js):env.JIRA_CIRCLECI_CUSTOM_FIELD}
+      JIRA_KEY_FORMAT: ${file(./config/envVars.js):env.JIRA_KEY_FORMAT}
+      JIRA_PASSWORD: ${file(./config/envVars.js):env.JIRA_PASSWORD}
+      JIRA_USER: ${file(./config/envVars.js):env.JIRA_USER}
+
+plugins:
+  - serverless-python-requirements
+  - serverless-sentry
+
+custom:
+  pythonRequirements:
+    usePipenv: false
+    noDeploy:
+        - pytest
+        - pylint
+  sentry:
+    dsn: ${file(./config/envVars.js):env.SENTRY_DSN}
+
